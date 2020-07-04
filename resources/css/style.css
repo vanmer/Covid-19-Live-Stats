@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+/* ---------------------------------------------- */
+/*                    GENERAL                     */
+/* ---------------------------------------------- */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+.hide {
+  display: none;
+}
+
+.fadeIn {
+  animation: fade 0.5 ease-in-out;
+}
+
+@@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------- */
+/*                    HEADER                      */
+/* ---------------------------------------------- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  background-color: #F3F2F2;
+}
+/* -------- LOGO -------- */
+.logo {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.logo p {
+  font-weight: 800;
+  padding: 5px;
+}
+/* -------- NAV -------- */
+nav {
+
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  list-style: none
+}
+
+nav ul li:last-child {
+  padding-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  padding: 10px;
+}
+
+/* ---------------------------------------------- */
+/*                      MAIN                      */
+/* ---------------------------------------------- */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stats {
+  width: 100%;
+  height: 600px;
+  background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('../img/bg.jpg');
+  background-size: cover;
+}
+
+/* -------- BG IMAGE -------- */
+
+/* -------- LATEST REPORT -------- */
+
+/* -------- CHART -------- */
+
+/* -------- SEARCH COUNTRY -------- */
+
+/* SCROLL BAR */
+
+/* ---------------------------------------------- */
+/*                    FOOTER                      */
+/* ---------------------------------------------- */
+
+/* ---------------------------------------------- */
+/*             SCREEN WIDTH < 600px               */
+/* ---------------------------------------------- *
