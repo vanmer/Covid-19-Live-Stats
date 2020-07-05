@@ -14,4 +14,15 @@ let app_data = [],
     cases_list = [],
     recovered_list = [],
     deaths_list = [],
-    dates = [];
+    formatedDates = [];
+
+// GET USERS COUNTRY CODE
+let country_code = geoplugin_countryCode();
+let user_country;
+country_list.forEach( country => {
+  if ( country.code == country_code ) {
+    user_country = country.name;
+  }
+});
+
+console.log(user_country);
