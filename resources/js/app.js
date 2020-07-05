@@ -8,3 +8,10 @@ const deaths_element = document.querySelector(".deaths .value");
 const new_deaths_element = document.querySelector(".deaths .new-value");
 
 const ctx = document.getElementById("axes_line_chart").getContext("2d");
+
+// APP VARIABLES
+let app_data = [],
+    cases_list = [],
+    recovered_list = [],
+    deaths_list = [],
+    dates = [];
