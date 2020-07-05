@@ -56,13 +56,13 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 .logo p {
   font-weight: 800;
-  line-height: 1.2;
-  padding: 6px;
+  line-height: 1.1;
+  padding-top: 5px;
 }
 
 /* -------- NAV -------- */
