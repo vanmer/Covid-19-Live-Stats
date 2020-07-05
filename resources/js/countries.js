@@ -204,3 +204,10 @@ let country_list = [
     { name: 'Yemen', code: 'YE' },
     { name: 'China', code: 'CN' }
 ];
+
+// select search country elements
+const search_country_element = document.querySelector(".search-country");
+const country_list_element = document.querySelector(".country-list");
+const change_country_btn = document.querySelector(".change-country");
+const close_list_btn = document.querySelector(".close");
+const input = document.getElementById("search-input");
