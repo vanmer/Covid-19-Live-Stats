@@ -297,12 +297,13 @@ footer {
 
 .contact img {
   width: 48px;
-  padding-top: 6px;
+  padding-top: 5px;
+  z-index: 3;
 }
 
 .contact p {
   color: #FFF;
-  padding-left: 8px
+  padding-left: 12px;
 }
 
 /* ---------------------------------------------- */
