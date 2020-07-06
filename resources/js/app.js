@@ -25,10 +25,7 @@ country_list.forEach( country => {
   }
 });
 
-/* ---------------------------------------------- */
-/*                API URL AND KEY                 */
-/* ---------------------------------------------- */
-
+// API AND KEY
 function fetchData(user_country) {
   fetch(`https://covid19-monitor-pro.p.rapidapi.com/coronavirus/cases_by_days_by_country.php?country=${user_country}`, {
 		"method": "GET",
@@ -56,8 +53,8 @@ function fetchData(user_country) {
     updateUI();
   })
   .catch( error => {
-    alert(error);
-  })
+		alert(JSON.parse(JSON.stringify(error)));
+	})
 }
 
 fetchData(user_country);
@@ -65,4 +62,25 @@ fetchData(user_country);
 // UPDATE UI FUNCTION
 function updateUI() {
   updateStats();
+  // axesLinearChart();
 }
+
+// UPDATE STATS FUNCTION
+function updateStats() {
+  let last_entry = app_data[app_data.length - 1];
+  let before_last_entry = app_data[app_data.length - 2];
+  console.log(last_entry);
+
+  country_name_element.innerHTML = last_entry.country_name;
+
+  total_cases_element.innerHTML = last_entry.total_cases || 0;
+  new_cases_element.innerHTML = `+${ last_entry.new_cases || 0 }`;
+
+  recovered_element.innerHTML = last_entry.total_recovered;
+  new_recovered_element.innerHTML = `+${ parseInt(last_entry.total_recovered.replace(/,/g, "")) - parseInt(before_last_entry.total_recovered.replace(/,/g, "")) }`;
+
+  deaths_element.innerHTML = last_entry.total_deaths;
+  new_deaths_element.innerHTML = `+${ last_entry.new_deaths || 0 }`;
+}
+
+// UPDATE CHART with Chart.js
