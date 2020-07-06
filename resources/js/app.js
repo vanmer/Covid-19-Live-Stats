@@ -48,6 +48,7 @@ function fetchData(user_country) {
     dates.forEach( date => {
       let DATA = data[date];
 
+      formatedDates.push(formateDate(date));
       app_data.push(DATA);
       cases_list.push(parseInt(DATA.total_cases.replace(/,/g, "")));
       recovered_list.push(parseInt(DATA.total_recovered.replace(/,/g, "")));
@@ -58,11 +59,13 @@ function fetchData(user_country) {
     updateUI();
   })
   .catch( error => {
-		alert(JSON.parse(JSON.stringify(error)));
+		// alert(JSON.parse(JSON.stringify(error)));
+    alert(error);
 	})
 }
 
 fetchData(user_country);
+console.log(user_country);
 
 // UPDATE UI FUNCTION
 function updateUI() {
@@ -90,6 +93,10 @@ function updateStats() {
 // UPDATE CHART with Chart.js
 let my_chart;
 
+if (my_chart) {
+  my_chart.destroy();
+}
+
 function axesLinearChart() {
   my_chart = new Chart(ctx, {
     type: 'line',
@@ -97,11 +104,11 @@ function axesLinearChart() {
         datasets: [
           {
             label: 'Cases',
-            data: cases_list,
-            fill: false,
-            borderColor: '#FFF',
-            backgroundColor: '#FFF',
-            borderWidth: 1
+				    data: cases_list,
+				    fill : false,
+			      borderColor : '#FFF',
+				    backgroundColor: '#FFF',
+				    borderWidth : 1
           },
           {
             label: 'Recovered',
@@ -120,11 +127,20 @@ function axesLinearChart() {
             borderWidth: 1
           }
       ],
-        labels: dates
+        labels: formatedDates
     },
     options: {
         responsive: true,
         maintainAspectRatio: false
     }
-});
+  });
+}
+
+// FORMAT DATES
+const monthsNames = ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function formateDate(dateString) {
+  let date = new Date(dateString);
+
+  return `${date.getDate()} ${monthsNames[date.getMonth()]}`;
 }
