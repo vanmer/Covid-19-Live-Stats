@@ -11,10 +11,11 @@ const ctx = document.getElementById("axes_line_chart").getContext("2d");
 
 // APP VARIABLES
 let app_data = [],
-    cases_list = [],
-    recovered_list = [],
-    deaths_list = [],
-    formatedDates = [];
+	  cases_list = [],
+	  recovered_list = [],
+	  deaths_list = [],
+    dates = [],
+	  formatedDates = [];
 
 // GET USERS COUNTRY CODE
 let country_code = geoplugin_countryCode();
@@ -27,6 +28,10 @@ country_list.forEach( country => {
 
 // API AND KEY
 function fetchData(user_country) {
+  country_name_element.innerHTML = "Loading...";
+
+  cases_list = [], recovered_list =[], deaths_list = [], dates = [], formatedDates = [];
+
   fetch(`https://covid19-monitor-pro.p.rapidapi.com/coronavirus/cases_by_days_by_country.php?country=${user_country}`, {
 		"method": "GET",
 		"headers": {
@@ -62,14 +67,13 @@ fetchData(user_country);
 // UPDATE UI FUNCTION
 function updateUI() {
   updateStats();
-  // axesLinearChart();
+  axesLinearChart();
 }
 
 // UPDATE STATS FUNCTION
 function updateStats() {
   let last_entry = app_data[app_data.length - 1];
   let before_last_entry = app_data[app_data.length - 2];
-  console.log(last_entry);
 
   country_name_element.innerHTML = last_entry.country_name;
 
@@ -84,3 +88,43 @@ function updateStats() {
 }
 
 // UPDATE CHART with Chart.js
+let my_chart;
+
+function axesLinearChart() {
+  my_chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        datasets: [
+          {
+            label: 'Cases',
+            data: cases_list,
+            fill: false,
+            borderColor: '#FFF',
+            backgroundColor: '#FFF',
+            borderWidth: 1
+          },
+          {
+            label: 'Recovered',
+            data: recovered_list,
+            fill: false,
+            borderColor: '#009688',
+            backgroundColor: '#009688',
+            borderWidth: 1
+          },
+          {
+            label: 'Deaths',
+            data: deaths_list,
+            fill: false,
+            borderColor: '#F44336',
+            backgroundColor: '#F44336',
+            borderWidth: 1
+          }
+      ],
+        labels: dates
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+}
